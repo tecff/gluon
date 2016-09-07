@@ -4,13 +4,16 @@ return function(form, uci)
 	local owner = uci:get_first("gluon-node-info", "owner")
 
 	local s = form:section(Section, nil, translate(
-		'Please provide your contact information here to '
-		.. 'allow others to contact you. Note that '
+		'You should provide your contact information here to '
+		.. 'allow others to contact you. Please note that '
 		.. 'this information will be visible <em>publicly</em> '
-		.. 'on the internet together with your node\'s coordinates.'
+		.. 'on the internet together with your node\'s coordinates. '
+		.. 'If you don\'t want to provide public information, '
+		.. 'please contact us at noc@freifunk-altdorf.de '
+		.. 'so at least we know whom to contact in case of problems.'
 	))
 
-	local o = s:option(Value, "contact", translate("Contact info"), translate("e.g. E-mail or phone number"))
+	local o = s:option(Value, "contact", translate("Contact info"), translate("e.g. E-mail, phone number, nickname, website"))
 	o.default = uci:get("gluon-node-info", owner, "contact")
 	o.optional = not ((site.config_mode or {}).owner or {}).obligatory
 	-- without a minimal length, an empty string will be accepted even with "optional = false"
