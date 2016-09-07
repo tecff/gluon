@@ -7,10 +7,13 @@ local M = {}
 
 function M.section(form)
   local s = form:section(cbi.SimpleSection, nil, i18n.translate(
-    'Please provide your contact information here to '
-      .. 'allow others to contact you. Note that '
+    'You should provide your contact information here to '
+      .. 'allow others to contact you. Please note that '
       .. 'this information will be visible <em>publicly</em> '
-      .. 'on the internet together with your node\'s coordinates.'
+      .. 'on the internet together with your node\'s coordinates. '
+      .. 'If you don\'t want to provide public information, '
+      .. 'please contact us at noc@freifunk-altdorf.de '
+      .. 'so at least we know whom to contact in case of problems.'
     )
   )
 
@@ -18,7 +21,7 @@ function M.section(form)
   o.default = uci:get_first("gluon-node-info", "owner", "contact", "")
   o.rmempty = not ((site.config_mode or {}).owner or {}).obligatory
   o.datatype = "string"
-  o.description = i18n.translate("e.g. E-mail or phone number")
+  o.description = i18n.translate("e.g. E-mail, phone number, nickname, website")
   o.maxlen = 140
 end
 
