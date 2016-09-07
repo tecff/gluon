@@ -12,8 +12,10 @@ return function(form, uci)
 	end
 
 	local text = translate(
-		'If you want the location of your node to ' ..
-		'be displayed on the map, you can enter its coordinates here.'
+		'Please enter the coordinates of your node here. ' ..
+		'The node will be displayed on the <a href="https://map.tecff.de/" target="_blank">map</a> ' ..
+		'using them. You may determine these two values by right-clicking ' ..
+		'on the node\'s planned location on the map.'
 	)
 	if show_altitude() then
 		text = text .. ' ' .. translate("gluon-config-mode:altitude-help")
