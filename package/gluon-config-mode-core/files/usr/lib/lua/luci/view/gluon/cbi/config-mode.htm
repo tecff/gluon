@@ -19,6 +19,32 @@
 <form method="post" enctype="multipart/form-data" action="<%=REQUEST_URI%>">
 	<div>
 		<script type="text/javascript" src="<%=resource%>/cbi.js"></script>
+		<script type="text/javascript">
+var form = document.getElementsByTagName('form')[0];
+function isEmpty(elem) {
+	if (elem == null || elem.value == null || elem.value == "")
+		return true
+	return false
+}
+form.addEventListener('submit', function formSubmit(evt) {
+	var inputcontact = document.getElementById('cbid.wizard.1._contact');
+	var inputlocation = document.getElementById('cbid.wizard.1._location');
+	var inputloclat = document.getElementById('cbid.wizard.1._latitude');
+	var inputloclong = document.getElementById('cbid.wizard.1._longitude');
+	var confirmcontact = true;
+	var confirmlocation = true;
+	if (isEmpty(inputcontact))
+		confirmcontact = confirm("Willst Du wirklich keine Kontaktinformation hinterlegen?");
+	if (isEmpty(inputlocation) || inputlocation.value == "0" || isEmpty(inputloclat) || isEmpty(inputloclong))
+		confirmlocation = confirm("Willst Du wirklich keinen Standort angeben?");
+	if (!confirmcontact || !confirmlocation) {
+		evt.returnValue = false;
+		if (evt.preventDefault) evt.preventDefault();
+		return false;
+	}
+	return true;
+}, false);
+		</script>
 		<input type="hidden" name="cbi.submit" value="1" />
 	</div>
 <% end %>
