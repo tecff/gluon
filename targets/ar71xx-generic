@@ -222,10 +222,8 @@ packages $ATH10K_PACKAGES
 device tp-link-archer-c7-v5 archer-c7-v5
 packages $ATH10K_PACKAGES
 
-if [ "$BROKEN" ]; then
 device tp-link-archer-c25-v1 archer-c25-v1 # BROKEN: OOM with 5GHz enabled in most environments
 packages $ATH10K_PACKAGES_QCA9887
-fi
 
 if [ "$BROKEN" ]; then
 device tp-link-archer-c58-v1 archer-c58-v1 # BROKEN: OOM with 5GHz enabled in most environments
